@@ -12,6 +12,8 @@ const createNext = handlers => {
 
 const createRouter = (handlers) => {
   return (req, res) => {
+    const url = new URL(`http://${request.headers.host}${request.url}`);
+    request.url = url;
     const next = createNext(handlers);
     next(req, res);
   };
